@@ -9,7 +9,7 @@ services:
       - 8041:8041
       
   mongo_db:
-    image: mongo:5.0.0
+    image: mongo:4.4
     container_name: mongo_db
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
