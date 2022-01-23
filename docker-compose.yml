@@ -1,0 +1,25 @@
+version: '3.3'
+
+services:
+  class:
+    build:
+      context: ./Class
+    container_name: class
+    ports:
+      - 8041:8041
+      
+  mongo_db:
+    image: mongo:latest
+    container_name: mongo_db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_data_container:/data/db
+
+volumes:
+  mongodb_data_container:
+  
+
