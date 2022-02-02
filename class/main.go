@@ -100,7 +100,7 @@ func GetSingleClass(collection *mongo.Collection, context context.Context, speci
 // Adding a new collection to the database
 func AddNewSemester(input_semester string, arr_of_modules map[string]string) {
 	// TO CHANGE : when myron code is done and the receive format is confirm
-    client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://root:rootpassword@mongo_db:27017"))
+    client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://localhost:27017"))
     if err != nil {
         log.Fatal(err)
     }
@@ -202,7 +202,7 @@ func RemoveClassFromSemester(collection *mongo.Collection, context context.Conte
 }
 
 func classes(w http.ResponseWriter, r *http.Request) {
-	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://root:rootpassword@mongo_db:27017"))
+	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://localhost:27017"))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -255,7 +255,7 @@ func classes(w http.ResponseWriter, r *http.Request) {
 			requestClassCode := v.Get("classCode")
 			fmt.Println(requestClassCode)
 			if requestClassCode != "" && requestModuleCode != ""{
-				if newClass.Tutor != "" && newClass.Capacity != 0 && newClass.Schedule != "" {
+				if newClass.Tutor != "" && newClass.Capacity != 0 {
 					semester_startCollection := classDatabase.Collection(params["semester_start_date"])
 					UpdateOrInsertClassInSemester(semester_startCollection, ctx, newClass, requestModuleCode, requestClassCode)
 				}

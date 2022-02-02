@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Class Page</title>
+    <style>
+
+        h1, h2, p {
+            width: 100%;
+            text-align: center;
+        }
+
+        table {
+            border: 2px solid black;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 2px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #module, #schedule {
+            min-width: none;
+            max-width: 120px;
+        }
+
+        #redText {
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Welcome, {{.UserID}}</h1>
+    <hr>
+    <h1>All Available Classes</h1>
+    <p>Next semester starts on <span id="redText"><b>{{.NextMon}}</b></span></p>
+    <div>
+        <form method="POST">
+            <label>Enter Semester Start Date (optional):</label>
+            <input type="text" name="semester"></input>
+            <label>Enter Class Code to search:</label>
+            <input type="text" name="classcode"></input>
+            <input type="submit">
+        </form>
+        <br><br>
+
+        <table>
+            <tr>
+                <th>Module Code</th>
+                <th>Module Name</th>
+                <th>Class Code</th>
+                <th>Capacity</th>
+                <th>Schedule</th>
+                <th>Tutor</th>
+                <th>View Class Details</th>
+            </tr>
+            {{ range $module := .SemInfo }}
+                {{ range $classIndex, $class := $module.ModuleClasses }}
+                    {{ if eq $classIndex 0 }}
+                        <tr>
+                            <td id="module" rowspan="{{ len $module.ModuleClasses }}">{{ $module.ModuleCode }}</td>
+                            <td id="module" rowspan="{{ len $module.ModuleClasses }}">{{ $module.ModuleName }}</td>
+                            <td>{{ $class.ClassCode }}</td>
+                            <td>{{ $class.Capacity }}</td>
+                            <td id="schedule">{{ $class.Schedule }}</td>
+                            <td>{{ $class.Tutor }}</td>
+                            <td>
+                                <a href="/viewClass/{{$class.ClassCode}}">
+                                    <button>
+                                        View
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                    {{ else }}
+                        <tr>
+                            <td>{{ $class.ClassCode }}</td>
+                            <td>{{ $class.Capacity }}</td>
+                            <td>{{ $class.Schedule }}</td>
+                            <td>{{ $class.Tutor }}</td>
+                            <td>
+                                <a href="/viewClass/{{$class.ClassCode}}">
+                                    <button>
+                                        View
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                    {{ end }}
+                {{ end }}
+                {{ else }}
+                    <tr>
+                        <td colspan="7">
+                            <h1 id="redText">No Results</h1>
+                        </td>
+                    </tr>
+            {{ end }}
+        </table>
+    </div>
+    <br><br>
+    <a href="/">
+        <button>Log Out</button>
+    </a>
+</body>
+</html>
