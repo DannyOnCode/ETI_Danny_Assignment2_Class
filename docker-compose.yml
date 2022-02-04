@@ -3,7 +3,7 @@ version: '3.3'
 services:
   class:
     build:
-      context: ./Class
+      context: ./class
     container_name: class
     ports:
       - 8041:8041
