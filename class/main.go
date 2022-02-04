@@ -255,7 +255,7 @@ func classes(w http.ResponseWriter, r *http.Request) {
 			requestClassCode := v.Get("classCode")
 			fmt.Println(requestClassCode)
 			if requestClassCode != "" && requestModuleCode != ""{
-				if newClass.Tutor != "" && newClass.Capacity != 0 && newClass.Schedule != "" {
+				if newClass.Tutor != "" && newClass.Capacity != 0 {
 					semester_startCollection := classDatabase.Collection(params["semester_start_date"])
 					UpdateOrInsertClassInSemester(semester_startCollection, ctx, newClass, requestModuleCode, requestClassCode)
 				}
