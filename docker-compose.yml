@@ -7,7 +7,16 @@ services:
     container_name: class
     ports:
       - 8041:8041
-      
+    
+  classfrontend:
+    depends_on:
+      - mongo_db
+    build:
+      context: ./web
+    container_name: class_frontend
+    ports:
+      - 8040:8040
+
   mongo_db:
     image: mongo:4.4
     container_name: mongo_db

@@ -15,10 +15,11 @@ import (
 )
 
 // Initialising api routes
-const classURL = "http://localhost:8041/api/v1/classes"
+const classURL = "http://10.31.11.11:8041/api/v1/classes"
 
 type User struct {
-	UserID string `json:"UserID"`
+	UserID string `json:"userID"`
+	UserType string `json:"student"`
 }
 
 var currentUserInfo User
