@@ -151,9 +151,9 @@ The below image shows an example of the data in the database<br>
 
 Each service has been publicly published onto Docker Hub.
 
-Front-end web view: https://hub.docker.com/r/[TO BE UPDATED]
+Front-end web view: https://hub.docker.com/repository/docker/nihilitydas/frontend_class
 
-Class microservice: https://hub.docker.com/r/[TO BE UPDATED]
+Class microservice: https://hub.docker.com/repository/docker/nihilitydas/microservice_class
 
 ## Instructions for setting up and running your microservices <a name="instructions"></a>
 
