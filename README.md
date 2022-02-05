@@ -124,11 +124,46 @@ Format of semester_start_date : 24-01-2022 (dd-mm-yyyy)<br>
 Format of classCode : IS_01 (ModuleCode_ClassNumber)<br>
 Format of moduleCode : IS (ModuleCode)<br>
 
-**Front-End URL**
+**Base Front-End URL**
 ```
 http://localhost:8040
 ```
-By entering this into the URL it will bring the user to the temporary login page in which they can enter their details
+
+**Access the temp login page**
+```
+http://localhost:8040
+```
+
+**Student Main page after login**
+```
+http://localhost:8040/StudentClassPage
+```
+
+**Tutor Main Page after login**
+```
+http://localhost:8040/TutorClassPage
+```
+
+**Create Class Page**
+```
+http://localhost:8040/createClass
+```
+
+**View Specific Class Page**
+```
+http://localhost:8040/viewClass/{classCode}
+```
+
+**Edit Class Page**
+```
+http://localhost:8040/editClass/{classCode}
+```
+
+**Delete Class Page**
+```
+http://localhost:8040/deleteClass/{classCode}
+```
+
 
 ## Database Structure
 

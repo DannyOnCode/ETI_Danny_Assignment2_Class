@@ -216,6 +216,7 @@ func classes(w http.ResponseWriter, r *http.Request) {
 	classDatabase := client.Database("classes")
 	params := mux.Vars(r)
 
+	// GET to get class specific class, get all classes
 	if r.Method == "GET" {
 		v := r.URL.Query()
 		requestClassCode := v.Get("classCode")
@@ -232,6 +233,7 @@ func classes(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// DELETE to delete class record
 	if r.Method == "DELETE"{
 		v := r.URL.Query()
 		requestClassCode := v.Get("classCode")
@@ -246,6 +248,7 @@ func classes(w http.ResponseWriter, r *http.Request) {
 	if r.Header.Get("Content-type") == "application/json" {
 		var newClass Class
 		v := r.URL.Query()
+		// POST to create new classes and create shell for class
 		if r.Method == "POST" {
 			reqBody, _ := ioutil.ReadAll(r.Body)
 			fmt.Println(string(reqBody))
@@ -279,6 +282,7 @@ func classes(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 
+		// PUT to edit changes to the class
 		if r.Method == "PUT" {
 			reqBody, _ := ioutil.ReadAll(r.Body)
 			fmt.Println(string(reqBody))

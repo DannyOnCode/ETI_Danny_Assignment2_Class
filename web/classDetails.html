@@ -16,6 +16,7 @@
     {{ range $studentIndex, $studentID := $.Class.Students }}
         <p>{{$studentIndex}} : {{$studentID}}</p>
     {{ end }}
+    <a href="http://10.31.11.11:8130/feedback/class/{{.Class.ClassCode}}"><button type="button">View class feedback & ratings</button></a>
     <a href="/editClass/{{.Class.ClassCode}}?semester_start_date={{.CurrentSemesterStartDate}}"><button type="button">Edit Class Details</button></a><br>
     <a href="/deleteClass/{{.Class.ClassCode}}?semester_start_date={{.CurrentSemesterStartDate}}"><button type="button">Delete Class Details</button></a><br>
 </body>
