@@ -53,14 +53,14 @@ However, for creation, deletion and editing of the classes. ID has been checked 
 Under this section, I will be discussing the class microservice and the resources that it provides along with the routes to access the resources.
 
 **Base URL :**
-```console
+```
 localhost:8041/api/v1/classes
 ```
 This is the base URL to the API that will needed before any specifications.
  
 
 **Get all classes of certain semester:**
-```console
+```
 GET localhost:8041/api/v1/classes/{semester_start_date}
 ```  
 This is a GET request route that will look into the database and fetch all the classes under the specified semester start date<br>
@@ -68,7 +68,7 @@ Format of semester_start_date : 24-01-2022<br>
 Returns: json array of all modules and classes under the module<br>
 
 **Get specific class of certain semester:**
-```console
+```
 GET localhost:8041/api/v1/classes/{semester_start_date}?classCode=...
 ```
 This is a GET request route that will look into the database and fetch the class specified under the specified semester start date<br>
@@ -77,14 +77,14 @@ Format of classCode : IS_01 (ModuleCode_ClassNumber)<br>
 Returns: json array of all modules and classes under the module<br>
 
 **Add Semester, Modules and Empty Classes**
-```console
+```
 POST localhost:8041/api/v1/classes/{semester_start_date}
 ```
 This is a POST request route that will be called automatically where it creates the shell with all the modules.<br>
 This call will also call from *Myron API call* to retreive the available modules for the semester (not yet implemented)<br>
 
 **Add/Update/Delete of certain Class**
-```console
+```
 POST localhost:8041/api/v1/classes/{semester_start_date}?moduleCode=...&classCode=... \ 
 --header 'Content-Type: application/json' \
 --data '{
@@ -100,7 +100,7 @@ Format of semester_start_date : 24-01-2022<br>
 Format of classCode : IS_01 (ModuleCode_ClassNumber)<br>
 Format of moduleCode : IS (ModuleCode)<br>
 
-```console
+```
 PUT localhost:8041/api/v1/classes/{semester_start_date}?moduleCode=...&classCode=... \ 
 --header 'Content-Type: application/json' \
 --data '{
