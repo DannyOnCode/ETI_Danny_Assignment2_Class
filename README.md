@@ -196,6 +196,12 @@ MongoDB Service : https://hub.docker.com/repository/docker/nihilitydas/db_mongo_
 
 After setting up the services, the applications would be hosted from http://localhost:8040
 
+The Class Director will first do a curl command to the API to create the shell for all the classes
+```
+curl --request POST "http://10.31.11.11:8041/api/v1/classes/:semester_start_date" -H "Content-type:application/json"
+```
+This curl command will create the shell for all classes after retrieving the available classes from Myron API (Management of Modules)
+
 **Automatic deployment**
 
 The deployment is done through the `docker-compose.yml` file where it will automatically build/update and run the application containers.
