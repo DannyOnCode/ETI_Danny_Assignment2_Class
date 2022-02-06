@@ -190,6 +190,8 @@ Front-end web view: https://hub.docker.com/repository/docker/nihilitydas/fronten
 
 Class microservice: https://hub.docker.com/repository/docker/nihilitydas/microservice_class
 
+MongoDB Service : https://hub.docker.com/repository/docker/nihilitydas/db_mongo_class
+
 ## Instructions for setting up and running your microservices <a name="instructions"></a>
 
 After setting up the services, the applications would be hosted from http://localhost:8040
@@ -207,6 +209,22 @@ Steps:
 
 1. Open a command terminal and navigate to project ROOT directory under Danny/04
 2. Run command `docker-compose up --build`
+
+**Single Docker image run**
+Running class microservice
+```
+docker run 
+```
+
+Running class frontend
+```
+
+```
+
+Running class mongo_db
+```
+
+```
 
 **Manual deployment**
 
