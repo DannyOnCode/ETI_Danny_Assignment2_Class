@@ -328,11 +328,35 @@ func deleteClass(w http.ResponseWriter, r *http.Request) {
 	return
 }
 
+func backToHomePage(w http.ResponseWriter, r *http.Request){
+	tmpl := template.Must(template.ParseFiles("tempLogin.html"))
+
+	if currentUserInfo.UserID != "" {
+		if currentUserInfo.UserID[0:1] == "T"{
+			// Go to Tutor Page
+			http.Redirect(w, r, "/TutorClassPage", http.StatusFound)
+		}else{
+			// Go to Student Page
+			http.Redirect(w, r, "/StudentClassPage", http.StatusFound)
+		}
+	}else{
+		http.Redirect(w, r, "/", http.StatusFound)
+	}
+	tmpl.Execute(w, nil)
+}
+
+// Function to create shell
+// func createClassShell(){
+// 	url := classURL + "/" + currentSemStartDate
+// 	response, err := http.Post(url, "application/json")
+// }
+
 
 func main() {
 	router := mux.NewRouter()
 
 	router.HandleFunc("/", login)
+	router.HandleFunc("/BackToHomePage",backToHomePage)
 	router.HandleFunc("/StudentClassPage", studentMain)
 	router.HandleFunc("/TutorClassPage", tutorMain)
 	router.HandleFunc("/viewClass/{classCode}", viewClass)
