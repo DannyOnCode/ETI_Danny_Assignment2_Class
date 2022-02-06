@@ -93,9 +93,9 @@ func studentMain(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	var url string
-	url = classURL + "/" + currentSemStartDate
+	url = classURL + "/" + nextSemStartDate
 
-	var currentSemesterInfo Semester
+	var nextSemesterInfo Semester
 	response, err := http.Get(url)
 
 	if err != nil {
@@ -105,16 +105,16 @@ func studentMain(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(response.StatusCode)
 		fmt.Println(string(semData))
 
-		json.Unmarshal(semData, &currentSemesterInfo)
-		fmt.Println(currentSemesterInfo)
+		json.Unmarshal(semData, &nextSemesterInfo)
+		fmt.Println(nextSemesterInfo)
 		response.Body.Close()
 	}
 
 	data := map[string]interface{}{
 		"UserID": currentUserInfo.UserID,
 		"NextMon": nextMon,
-		"SemInfo": currentSemesterInfo.SemesterModules,
-		"CurrentSemesterStartDate" : currentSemStartDate,
+		"SemInfo": nextSemesterInfo.SemesterModules,
+		"CurrentSemesterStartDate" : nextSemStartDate,
 	}
 
 	tmpl.Execute(w, data)
@@ -123,9 +123,9 @@ func studentMain(w http.ResponseWriter, r *http.Request) {
 func tutorMain(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("tutorClassMainPage.html"))
 	var url string
-	url = classURL + "/" + currentSemStartDate
+	url = classURL + "/" + nextSemStartDate
 
-	var currentSemesterInfo Semester
+	var nextSemesterInfo Semester
 	response, err := http.Get(url)
 
 	if err != nil {
@@ -135,16 +135,16 @@ func tutorMain(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(response.StatusCode)
 		fmt.Println(string(semData))
 
-		json.Unmarshal(semData, &currentSemesterInfo)
-		fmt.Println(currentSemesterInfo)
+		json.Unmarshal(semData, &nextSemesterInfo)
+		fmt.Println(nextSemesterInfo)
 		response.Body.Close()
 	}
 
 	data := map[string]interface{}{
 		"UserID": currentUserInfo.UserID,
 		"NextMon": nextMon,
-		"SemInfo": currentSemesterInfo.SemesterModules,
-		"CurrentSemesterStartDate" : currentSemStartDate,
+		"SemInfo": nextSemesterInfo.SemesterModules,
+		"CurrentSemesterStartDate" : nextSemStartDate,
 	}
 
 	tmpl.Execute(w, data)
@@ -161,8 +161,8 @@ func viewClass(w http.ResponseWriter, r *http.Request) {
 		// Send Url with semester date
 		url = classURL + "/" + requestSemesterDate + "?moduleCode=" + requestedModuleCode + "&classCode=" + requestedClassCode
 	}else{
-		// Send Url with current sem date
-		requestSemesterDate = currentSemStartDate
+		// Send Url with next sem date
+		requestSemesterDate = nextSemStartDate
 		url = classURL + "/" + requestSemesterDate + "?moduleCode=" + requestedModuleCode + "&classCode=" + requestedClassCode
 	}
 	var receivedClassDetails Class
@@ -246,7 +246,7 @@ func editClass(w http.ResponseWriter, r *http.Request) {
 		url = classURL + "/" + requestSemesterDate + "?moduleCode=" + requestedModuleCode + "&classCode=" + requestedClassCode
 	}else{
 		// Send Url with current sem date
-		url = classURL + "/" + currentSemStartDate + "?moduleCode=" + requestedModuleCode + "&classCode=" + requestedClassCode
+		url = classURL + "/" + nextSemStartDate + "?moduleCode=" + requestedModuleCode + "&classCode=" + requestedClassCode
 	}
 	var receivedClassDetails Class
 	fmt.Println(url)
@@ -280,7 +280,7 @@ func createClass(w http.ResponseWriter, r *http.Request) {
 		if currentUserInfo.UserID[0:1] != "T"{
 			fmt.Println("Youre not a tutor why are you here?")
 		}else{
-			url := classURL + "/" + currentSemStartDate + "?moduleCode=" + r.FormValue("modulecode") + "&classCode=" + details.ClassCode
+			url := classURL + "/" + nextSemStartDate + "?moduleCode=" + r.FormValue("modulecode") + "&classCode=" + details.ClassCode
 			jsonValue, _ := json.Marshal(details)
 			response, err := http.Post(url, "application/json", bytes.NewBuffer(jsonValue))
 
@@ -347,7 +347,7 @@ func backToHomePage(w http.ResponseWriter, r *http.Request){
 
 // Function to create shell
 // func createClassShell(){
-// 	url := classURL + "/" + currentSemStartDate
+// 	url := classURL + "/" + nextSemStartDate
 // 	response, err := http.Post(url, "application/json")
 // }
 
