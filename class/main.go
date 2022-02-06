@@ -8,7 +8,8 @@ import (
 	"net/http"
 	"time"
 	"encoding/json"
-
+	
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -307,7 +308,11 @@ func main() {
 		"GET", "PUT", "POST", "DELETE")
 
 	fmt.Println("Listening at port 8041")
-	log.Fatal(http.ListenAndServe(":8041", router))
+	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type"})
+	originsOk := handlers.AllowedOrigins([]string{"http://10.31.11.11:8040", "http://localhost:8040"})
+	methodsOk := handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE"})
+    log.Fatal(http.ListenAndServe(":8041", handlers.CORS(originsOk, headersOk, methodsOk)(router)))
+	log.Fatal(http.ListenAndServe(":", router))
 
 	fmt.Println("Database opened")
 
