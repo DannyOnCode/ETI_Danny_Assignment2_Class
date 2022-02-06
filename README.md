@@ -53,14 +53,14 @@ However, for creation, deletion and editing of the classes. ID has been checked 
 Under this section, I will be discussing the class microservice and the resources that it provides along with the routes to access the resources.
 
 **Base URL :**
-```console
+```
 localhost:8041/api/v1/classes
 ```
 This is the base URL to the API that will needed before any specifications.
  
 
 **Get all classes of certain semester:**
-```console
+```
 GET localhost:8041/api/v1/classes/{semester_start_date}
 ```  
 This is a GET request route that will look into the database and fetch all the classes under the specified semester start date<br>
@@ -68,7 +68,7 @@ Format of semester_start_date : 24-01-2022<br>
 Returns: json array of all modules and classes under the module<br>
 
 **Get specific class of certain semester:**
-```console
+```
 GET localhost:8041/api/v1/classes/{semester_start_date}?classCode=...
 ```
 This is a GET request route that will look into the database and fetch the class specified under the specified semester start date<br>
@@ -77,14 +77,14 @@ Format of classCode : IS_01 (ModuleCode_ClassNumber)<br>
 Returns: json array of all modules and classes under the module<br>
 
 **Add Semester, Modules and Empty Classes**
-```console
+```
 POST localhost:8041/api/v1/classes/{semester_start_date}
 ```
 This is a POST request route that will be called automatically where it creates the shell with all the modules.<br>
 This call will also call from *Myron API call* to retreive the available modules for the semester (not yet implemented)<br>
 
 **Add/Update/Delete of certain Class**
-```console
+```
 POST localhost:8041/api/v1/classes/{semester_start_date}?moduleCode=...&classCode=... \ 
 --header 'Content-Type: application/json' \
 --data '{
@@ -100,7 +100,7 @@ Format of semester_start_date : 24-01-2022<br>
 Format of classCode : IS_01 (ModuleCode_ClassNumber)<br>
 Format of moduleCode : IS (ModuleCode)<br>
 
-```console
+```
 PUT localhost:8041/api/v1/classes/{semester_start_date}?moduleCode=...&classCode=... \ 
 --header 'Content-Type: application/json' \
 --data '{
@@ -190,6 +190,8 @@ Front-end web view: https://hub.docker.com/repository/docker/nihilitydas/fronten
 
 Class microservice: https://hub.docker.com/repository/docker/nihilitydas/microservice_class
 
+MongoDB Service : https://hub.docker.com/repository/docker/nihilitydas/db_mongo_class
+
 ## Instructions for setting up and running your microservices <a name="instructions"></a>
 
 After setting up the services, the applications would be hosted from http://localhost:8040
@@ -207,6 +209,22 @@ Steps:
 
 1. Open a command terminal and navigate to project ROOT directory under Danny/04
 2. Run command `docker-compose up --build`
+
+**Single Docker image run**<br>
+Running class microservice
+```
+docker run --name class_microservice -dp 8041:8041 nihilitydas/microservice_class
+```
+
+Running class frontend
+```
+docker run --name class_frontend -dp 8040:8040 nihilitydas/frontend_class
+```
+
+Running class mongo_db
+```
+docker run --name mongo_db -dp 8049:27017 nihilitydas/db_mongo_class
+```
 
 **Manual deployment**
 
