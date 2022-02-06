@@ -223,7 +223,7 @@ docker run --name class_frontend -dp 8040:8040 nihilitydas/frontend_class
 
 Running class mongo_db
 ```
-docker run --name class_microservice -dp 8041:8041 nihilitydas/db_mongo_class
+docker run --name mongo_db -dp 8049:27017 nihilitydas/db_mongo_class
 ```
 
 **Manual deployment**
