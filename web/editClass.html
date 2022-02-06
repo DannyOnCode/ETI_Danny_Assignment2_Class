@@ -19,15 +19,5 @@
         <input type="text" name="capacity"></input><br />
         <input type="submit">
     </form>
-    <br><br>
-    <h1>Current {{.ClassCode}} Class Details</h1>
-    <hr>
-    <p>Schedule Of Class: {{.Schedule}}</p>
-    <p>Tutor Of Class: {{.Tutor}}</p>
-    <p>Capacity Of Class: {{.Capacity}}</p>
-    <p>Student Ids:</p>
-    {{ range $studentIndex, $studentID := $.Students }}
-        <p>{{$studentIndex}} : {{$studentID}}</p>
-    {{ end }}
     <a href="/TutorClassPage"><button type="button">Return to Class Main Page</button></a>
 </body>
