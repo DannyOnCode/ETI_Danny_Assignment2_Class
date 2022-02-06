@@ -54,14 +54,14 @@ Under this section, I will be discussing the class microservice and the resource
 
 **Base URL :**
 ```
-localhost:8041/api/v1/classes
+http://10.31.11.11:8041/api/v1/classes
 ```
 This is the base URL to the API that will needed before any specifications.
  
 
 **Get all classes of certain semester:**
 ```
-GET localhost:8041/api/v1/classes/{semester_start_date}
+GET http://10.31.11.11:8041/api/v1/classes/{semester_start_date}
 ```  
 This is a GET request route that will look into the database and fetch all the classes under the specified semester start date<br>
 Format of semester_start_date : 24-01-2022<br>
@@ -69,7 +69,7 @@ Returns: json array of all modules and classes under the module<br>
 
 **Get specific class of certain semester:**
 ```
-GET localhost:8041/api/v1/classes/{semester_start_date}?classCode=...
+GET http://10.31.11.11:8041/api/v1/classes/{semester_start_date}?classCode=...
 ```
 This is a GET request route that will look into the database and fetch the class specified under the specified semester start date<br>
 Format of semester_start_date : 24-01-2022<br>
@@ -78,14 +78,14 @@ Returns: json array of all modules and classes under the module<br>
 
 **Add Semester, Modules and Empty Classes**
 ```
-POST localhost:8041/api/v1/classes/{semester_start_date}
+POST http://10.31.11.11:8041/api/v1/classes/{semester_start_date}
 ```
 This is a POST request route that will be called automatically where it creates the shell with all the modules.<br>
 This call will also call from *Myron API call* to retreive the available modules for the semester (not yet implemented)<br>
 
 **Add/Update/Delete of certain Class**
 ```
-POST localhost:8041/api/v1/classes/{semester_start_date}?moduleCode=...&classCode=... \ 
+POST http://10.31.11.11:8041/api/v1/classes/{semester_start_date}?moduleCode=...&classCode=... \ 
 --header 'Content-Type: application/json' \
 --data '{
     "ClassCode":"...",
@@ -101,7 +101,7 @@ Format of classCode : IS_01 (ModuleCode_ClassNumber)<br>
 Format of moduleCode : IS (ModuleCode)<br>
 
 ```
-PUT localhost:8041/api/v1/classes/{semester_start_date}?moduleCode=...&classCode=... \ 
+PUT http://10.31.11.11:8041/api/v1/classes/{semester_start_date}?moduleCode=...&classCode=... \ 
 --header 'Content-Type: application/json' \
 --data '{
     "ClassCode":"...",
@@ -117,7 +117,7 @@ Format of classCode : IS_01 (ModuleCode_ClassNumber)<br>
 Format of moduleCode : IS (ModuleCode)<br>
 
 ```
-DELETE localhost:8041/api/v1/classes/{semester_start_date}?moduleCode=...&classCode=...
+DELETE http://10.31.11.11:8041/api/v1/classes/{semester_start_date}?moduleCode=...&classCode=...
 ```
 This is a DELETE request route that will delete the specified class under the module and semester specified<br>
 Format of semester_start_date : 24-01-2022 (dd-mm-yyyy)<br>
@@ -126,42 +126,42 @@ Format of moduleCode : IS (ModuleCode)<br>
 
 **Base Front-End URL**
 ```
-http://localhost:8040
+http://10.31.11.11:8040
 ```
 
 **Access the temp login page**
 ```
-http://localhost:8040
+http://10.31.11.11:8040
 ```
 
 **Student Main page after login**
 ```
-http://localhost:8040/StudentClassPage
+http://10.31.11.11:8040/StudentClassPage
 ```
 
 **Tutor Main Page after login**
 ```
-http://localhost:8040/TutorClassPage
+http://10.31.11.11:8040/TutorClassPage
 ```
 
 **Create Class Page**
 ```
-http://localhost:8040/createClass
+http://10.31.11.11:8040/createClass
 ```
 
 **View Specific Class Page**
 ```
-http://localhost:8040/viewClass/{classCode}
+http://10.31.11.11:8040/viewClass/{classCode}
 ```
 
 **Edit Class Page**
 ```
-http://localhost:8040/editClass/{classCode}
+http://10.31.11.11:8040/editClass/{classCode}
 ```
 
 **Delete Class Page**
 ```
-http://localhost:8040/deleteClass/{classCode}
+http://10.31.11.11:8040/deleteClass/{classCode}
 ```
 
 
@@ -194,7 +194,7 @@ MongoDB Service : https://hub.docker.com/repository/docker/nihilitydas/db_mongo_
 
 ## Instructions for setting up and running your microservices <a name="instructions"></a>
 
-After setting up the services, the applications would be hosted from http://localhost:8040
+After setting up the services, the applications would be hosted from http://10.31.11.11:8040
 
 The Class Director will first do a curl command to the API to create the shell for all the classes
 ```
