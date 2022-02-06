@@ -1,28 +1,25 @@
 version: '3.3'
 
 services:
-  class:
-    build:
-      context: ./class
-    container_name: class
-    ports:
-      - 8041:8041
+  # class:
+  #   build:
+  #     context: ./class
+  #   container_name: class
+  #   ports:
+  #     - 8041:8041
     
-  classfrontend:
-    depends_on:
-      - mongo_db
-    build:
-      context: ./web
-    container_name: class_frontend
-    ports:
-      - 8040:8040
+  # classfrontend:
+  #   depends_on:
+  #     - mongo_db
+  #   build:
+  #     context: ./web
+  #   container_name: class_frontend
+  #   ports:
+  #     - 8040:8040
 
   mongo_db:
     image: mongo:4.4
     container_name: mongo_db
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: rootpassword
     ports:
       - 8049:27017
     volumes:
