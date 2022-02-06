@@ -210,20 +210,20 @@ Steps:
 1. Open a command terminal and navigate to project ROOT directory under Danny/04
 2. Run command `docker-compose up --build`
 
-**Single Docker image run**
+**Single Docker image run**<br>
 Running class microservice
 ```
-docker run 
+docker run --name class_microservice -dp 8041:8041 nihilitydas/microservice_class
 ```
 
 Running class frontend
 ```
-
+docker run --name class_frontend -dp 8040:8040 nihilitydas/frontend_class
 ```
 
 Running class mongo_db
 ```
-
+docker run --name class_microservice -dp 8041:8041 nihilitydas/db_mongo_class
 ```
 
 **Manual deployment**
