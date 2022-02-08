@@ -309,10 +309,9 @@ func main() {
 
 	fmt.Println("Listening at port 8041")
 	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type"})
-	originsOk := handlers.AllowedOrigins([]string{"http://10.31.11.11:8040", "http://localhost:8040"})
+	originsOk := handlers.AllowedOrigins([]string{"http://10.31.11.11:8040", "http://localhost:8040", "http://10.31.11.11:8140"})
 	methodsOk := handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE"})
     log.Fatal(http.ListenAndServe(":8041", handlers.CORS(originsOk, headersOk, methodsOk)(router)))
-	log.Fatal(http.ListenAndServe(":", router))
 
 	fmt.Println("Database opened")
 
